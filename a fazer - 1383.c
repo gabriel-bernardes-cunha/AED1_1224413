@@ -1,3 +1,12 @@
+/* --------------------------------------------------------------------------
+Disciplina  : Algoritmos e Estruturas de Dados I, turma IB, 2026S2
+Nome        : Gabriel Bernardes Cunha
+Linguagem   : C
+Problema    : https://judge.beecrowd.com/pt/problems/view/1383
+Data        : 20/08/2026
+Objetivo    : Realizar um resolvedor de um sudoku.
+Aprendizado : Revisar conceitos.
+-------------------------------------------------------------------------- */
 #include <stdio.h>
  
 int vcoluna (sudoku[9][9]) {
