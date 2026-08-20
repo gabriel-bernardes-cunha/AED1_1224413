@@ -15,7 +15,7 @@ int vlinha(int sudoku[9][9])
     { // Avança as linhas.
         for (int j = 0; j < 9; j++)
         { // Avança as colunas, na linha previamente determinada.
-            for (int j2 = j; j2 < 9; j2++)
+            for (int j2 = j + 1; j2 < 9; j2++)
             { // O termo anterior é um termo fixo "j", e iremos o comparar com o resto dos termos "j2" da linha "i".
                 if (sudoku[i][j] == sudoku[i][j2])
                 {
@@ -24,7 +24,7 @@ int vlinha(int sudoku[9][9])
             }
         }
     }
-    return 1;
+    return 1; // Caso nada dê errado, esta verificação acaba com sucesso.
 }
 
 int vcoluna(int sudoku[9][9])
@@ -33,57 +33,62 @@ int vcoluna(int sudoku[9][9])
     { // Avança as colunas.
         for (int i = 0; i < 9; i++)
         { // Avança as linhas, na coluna previamente determinada.
-            for (int i2 = i; i2 < 9; i2++)
+            for (int i2 = i + 1; i2 < 9; i2++)
             { // O termo anterior é um termo fixo "i", e iremos o comparar com o resto dos termos "i2" da linha "j".
-                if (sudoku[j][i] == sudoku[j][i2])
+                if (sudoku[i][j] == sudoku[i2][j])
                 {
                     return 0;
                 }
             }
         }
     }
-    return 1;
+    return 1; // Caso nada dê errado, esta verificação acaba com sucesso.
 }
 
 int vbloco(int sudoku[9][9])
 {
+    /* Para facilitar, criemos um vetor com todos elementos, e então, verificar a linha*/
+    int linha_bloco[9];
+
     // Primeiro avancemos de 3 em 3 (blocos são 3x3).
     for (int i = 0; i < 9; i = i + 3)
     {
         for (int j = 0; j < 9; j = j + 3)
         {
-            // Agora, avancemos dentro do bloco.
-            // As coordenadas i2/j2 ditarão o ponto fixo a ser analizado.
+            int z = 0; // Será usado para percorrer a linha_bloco.
+
+            // As coordenadas i2/j2 percorrerão o bloco.
             for (int i2 = i; i2 < i + 3; i2++)
             {
                 for (int j2 = j; j2 < j + 3; j2++)
                 {
-                    // As coordenadas i3/j3 ditarão o ponto móvel a ser comparado com o fixo.
-                    /* Percebe-se que é uma lógica semelhante às verificações anteriores,
-                    apenas com */
-                    for (int i3 = i2; i3 < i + 3; i3++)
+                    linha_bloco[z] = sudoku[i2][j2];
+                    z++;
+                }
+            }
+            // Verifiquemos a linha_bloco agora:
+            for (int o = 0; o < 9; o++)
+            {
+                for (int o2 = o + 1; o2 < 9; o2++)
+                {
+                    if (linha_bloco[o] == linha_bloco[o2])
                     {
-                        for (int j3 = j2; j3 < j + 3; j3++)
-                        {
-                            if (sudoku[i2][j2] == sudoku[i3][j3])
-                            {
-                                return 0;
-                            }
-                        }
+                        return 0;
                     }
                 }
             }
         }
     }
-    return 1;
+    return 1; // Caso nada dê errado, esta verificação acaba com sucesso.
 }
 
 void resultado(int instancia, int r)
 {
-    if (r = 0)
-        printf("Instancia %d\nNAO", instancia);
+    if (r == 0)
+        printf("Instancia %d\nNAO\n", instancia);
     else
     {
+        printf("Instancia %d\nSIM\n", instancia);
         return;
     }
 }
@@ -118,15 +123,20 @@ int main()
         }
 
         r = vlinha(sudoku);
-        resultado(instancia, r);
-        r = vcoluna(sudoku);
-        resultado(instancia, r);
-        r = vbloco(sudoku);
-        resultado(instancia, r);
 
-        printf("Instancia %d\nSIM", instancia);
+        if (r == 1)
+        {
+            r = vcoluna(sudoku);
+            if (r == 1)
+            {
+                r = vbloco(sudoku);
+            }
+        }
+        resultado(instancia, r);
 
         ncasos--; // Um caso já foi visto.
+
+        printf("\n"); // Imprime uma linha em branco após cada instância.
     }
     return 0;
 }
