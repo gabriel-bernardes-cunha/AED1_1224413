@@ -1,11 +1,12 @@
 /* --------------------------------------------------------------------------
-Disciplina  : Algoritmos e Estruturas de Dados I, turma IB, 2026S2
+Disciplina  : Algortimo e Estrutura de Dados 2026S1
 Nome        : Gabriel Bernardes Cunha
 Linguagem   : C
 Problema    : https://judge.beecrowd.com/pt/problems/view/1383
 Data        : 20/08/2026
 Objetivo    : Realizar um resolvedor de um sudoku.
-Aprendizado : Revisar conceitos.
+Dificuldade : Realizar a verificação no bloco 3x3.
+Uso de IA   : 
 -------------------------------------------------------------------------- */
 #include <stdio.h>
 
