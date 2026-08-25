@@ -4,9 +4,9 @@ Nome        : Gabriel Bernardes Cunha
 Linguagem   : C
 Problema    : https://judge.beecrowd.com/pt/problems/view/1383
 Data        : 25/08/2026
-Objetivo    : Realizar um resolvedor de um sudoku usndo matrizes com alocação dinâmica
-Dificuldade : 
-Uso de IA   : Para saber como colocaria na função "int função (int **matriz)"
+Objetivo    : Realizar um resolvedor de um sudoku usndo matrizes com alocação dinâmica.
+Dificuldade : Escrever a sintaxe do malloc para colunas de forma ótima.
+Uso de IA   : Para saber como colocaria na função "int função (int **matriz)".
 -------------------------------------------------------------------------- */
 #include <stdio.h>
 #include <stdlib.h>
