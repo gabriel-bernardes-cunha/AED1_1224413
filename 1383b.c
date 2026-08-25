@@ -6,11 +6,12 @@ Problema    : https://judge.beecrowd.com/pt/problems/view/1383
 Data        : 25/08/2026
 Objetivo    : Realizar um resolvedor de um sudoku usndo matrizes com alocação dinâmica
 Dificuldade : 
-Uso de IA   : 
+Uso de IA   : Para saber como colocaria na função "int função (int **matriz)"
 -------------------------------------------------------------------------- */
 #include <stdio.h>
+#include <stdlib.h>
 
-int vlinha(int sudoku[9][9])
+int vlinha(int **sudoku)
 {
     for (int i = 0; i < 9; i++)
     { // Avança as linhas.
@@ -28,7 +29,7 @@ int vlinha(int sudoku[9][9])
     return 1; // Caso nada dê errado, esta verificação acaba com sucesso.
 }
 
-int vcoluna(int sudoku[9][9])
+int vcoluna(int **sudoku)
 { // Faremos a exata mesma coisa de "vlinha", apenas trocando "j" e "i".
     for (int j = 0; j < 9; j++)
     { // Avança as colunas.
@@ -46,7 +47,7 @@ int vcoluna(int sudoku[9][9])
     return 1; // Caso nada dê errado, esta verificação acaba com sucesso.
 }
 
-int vbloco(int sudoku[9][9])
+int vbloco(int **sudoku)
 {
     /* Para facilitar, criemos um vetor com todos elementos, e então, verificar a linha*/
     int linha_bloco[9];
@@ -96,7 +97,17 @@ void resultado(int instancia, int r)
 int main()
 {
     // Cria uma matriz com o sudoku.
-    int sudoku[9][9];
+    int **sudoku;
+
+    //Cria-se as linhas da matriz sudoku.
+    sudoku = (int**) malloc (9*sizeof(int*));
+
+    //Cria-se as colunas da matriz sudoku.
+    for (int i = 0; i < 9 ; i++)
+    {
+        sudoku[i] = (int*) malloc (9*sizeof(int)); 
+        //Vide que, diferente de vetor, as colunas de matrizes apenas diferem pelo operador "[]".
+    }
 
     int ncasos; // Quantas instâncias há.
     scanf("%d", &ncasos);
@@ -139,5 +150,10 @@ int main()
 
         printf("\n"); // Imprime uma linha em branco após cada instância.
     }
+    for (int i = 0 ; i < 9; i++)
+    {
+        free(sudoku[i]);
+    }
+    free(sudoku);
     return 0;
 }
