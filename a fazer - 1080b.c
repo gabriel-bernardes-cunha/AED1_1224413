@@ -9,6 +9,7 @@ Dificuldade :
 Uso de IA   : 
 -------------------------------------------------------------------------- */
 #include <stdio.h>
+#include <stdlib.h>
 
 int main()
 {
