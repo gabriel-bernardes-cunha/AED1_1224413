@@ -13,26 +13,30 @@ Uso de IA   :
 
 int main()
 {
-    int X[100], Maior, Posicao;
-
-    for (int i = 0; i < 100; i++)
+    int *Vetor, Maior, Posicao, n = 100;
+    
+    Vetor = (int*) malloc (n*sizeof(int));
+    
+    for (int i = 0; i < n; i++)
     {
 
-        scanf("%d", &X[i]);
+        scanf("%d", &Vetor[i]);
 
         if (i == 0)
         {
-            Maior = X[i];
+            Maior = Vetor[i];
             Posicao = i;
         }
 
-        if (X[i] > Maior)
+        if (Vetor[i] > Maior)
         {
-            Maior = X[i];
+            Maior = Vetor[i];
             Posicao = i;
         }
     }
     printf("%d\n%d\n", Maior, Posicao + 1);
 
+    free(Vetor);
+    
     return 0;
 }
