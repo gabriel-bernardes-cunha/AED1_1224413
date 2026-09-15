@@ -3,7 +3,7 @@ Disciplina  : Algortimo e Estrutura de Dados 2026S1
 Nome        : Gabriel Bernardes Cunha
 Linguagem   : C
 Problema    : https://judge.beecrowd.com/pt/problems/view/1068
-Data        : 08/09/2026
+Data        : 15/09/2026
 Objetivo    : Determinar se "()" está correto em expressões algébricas.
 Dificuldade : Executar pilhas corretamente.
 Uso de IA   : Não foi usada.
