@@ -11,17 +11,37 @@ Uso de IA   :
 #include <stdio.h>
 #include <stdlib.h>
 
-int queue(int act, int estrutura, int n)
+int queue(int act[], int estrutura[], int n)
 { // FIFO, assim, vamos ver se as sequências de 1 e 2 são idênticas:
     int seq1[n], seq2[n], valor = 0;
 
-    while (1)
+    int x1, x2, i = 0; // Determina o decorrimento dos vetores.
+    x1 = 0;            // Idem p seq1
+    x2 = 0;            // Idem p seq2
+
+    for (int i = 0; i < n; i++)
     {
-        if
-            if (seq1[])
+        if (act[i] == 1)
+        {
+            seq1[x1] = estrutura[i];
+            x1++;
+        }
+        else // act[i] == 2
+        {
+            seq2[x2] = estrutura[i];
+            /* A partir da primeira "retirada", podemos começar a deliberar sobre a
+            natureza da estrutura em mãos*/
+
+            if (seq1[x2] != seq2[x2])
+            { // O valor que acabei de tirar deve ser igual ao primeiro que coloquei.
+                valor = 1;
+                break;
+            }
+            x2++;
+        }
     }
 
-    if (valor != 0)
+    if (valor == 0)
     { // Se for fila.
         return 1;
     }
@@ -32,21 +52,91 @@ int queue(int act, int estrutura, int n)
     }
 }
 
-int stack(int act, int estrutura, int n)
+int stack(int act[], int estrutura[], int n)
 { // LIFO, assim,
-    if ()
-    { // Se for pilha
+    int seq1[n], seq2[n], valor = 0;
+
+    int x1, x2, i = 0; // Determina o decorrimento dos vetores.
+    x1 = 0;            // Idem p seq1
+    x2 = 0;            // Idem p seq2
+
+    while (1)
+    {
+        if (act[i] == 1)
+        {
+            seq1[x1] = estrutura[i];
+            x1++;
+        }
+        else // act[i] == 2
+        {
+            seq2[x2] = estrutura[i];
+
+            /* A partir da primeira "retirada", podemos começar a deliberar sobre a
+            natureza da estrutura em mãos*/
+
+            if (seq2[x2] != seq1[x1 - 1])
+            { // O valor que acabei de tirar deve ser igual ao que acabei de o colocar.
+                valor = 1;
+                break;
+            }
+
+            x2++;
+        }
+    }
+
+    if (valor == 0)
+    { // Se for pilha.
         return 2;
     }
+
     else
-    { // Se não for
+    { // Se não for pilha.
         return 0;
     }
 }
 
-int priority_queue(int act, int estrutura, int n)
+int priority_queue(int act[], int estrutura[], int n)
 {
-    if ()
+    int seq1[n], seq2[n], valor = 0;
+
+    int x1, x2, i = 0; // Determina o decorrimento dos vetores.
+    x1 = 0;            // Idem p seq1
+    x2 = 0;            // Idem p seq2
+
+    /*Diferentemente dos outros laços,
+    este também terá um modo de mostrar o maior de seq1 */
+    int maior = 0;
+
+    while (1)
+    {
+        if (act[i] == 1)
+        {
+
+            seq1[x1] = estrutura[i];
+
+            if (seq1[x1] > maior)
+            {
+                maior = seq1[x1];
+            }
+            x1++;
+        }
+        else // act[i] == 2
+        {
+            seq2[x2] = estrutura[i];
+
+            /* A partir da primeira "retirada", podemos começar a deliberar sobre a
+            natureza da estrutura em mãos*/
+
+            if (seq2[x2] != maior)
+            { // O valor que acabei de tirar deve ser ao maior de seq1.
+                valor = 1;
+                break;
+            }
+
+            x2++;
+        }
+    }
+    if (valor == 0)
     { // Se for fila de prioridade.
         return 3;
     }
