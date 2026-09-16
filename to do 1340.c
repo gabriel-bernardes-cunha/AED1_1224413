@@ -4,9 +4,9 @@ Nome        : Gabriel Bernardes Cunha
 Linguagem   : C
 Problema    : https://judge.beecrowd.com/pt/problems/view/1340
 Data        : 16/09/2026
-Objetivo    : 
+Objetivo    : Analisar qual estrutura de dados é.
 Dificuldade : Construir cada verificação. 
-Uso de IA   : 
+Uso de IA   : Esqueci do break no switch.
 -------------------------------------------------------------------------- */
 #include <stdio.h>
 #include <stdlib.h>
@@ -170,18 +170,23 @@ int main()
         {
         case 0:
             printf("impossible\n");
+            break;
 
         case 1:
             printf("queue\n");
+            break;
 
         case 2:
             printf("stack\n");
+            break;
 
         case 3:
             printf("priority queue\n");
+            break;
 
         default:
             printf("not sure\n");
+            break;
         }
     }
     return 0;
