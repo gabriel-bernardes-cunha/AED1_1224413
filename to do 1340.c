@@ -60,7 +60,7 @@ int stack(int act[], int estrutura[], int n)
     x1 = 0;            // Idem p seq1
     x2 = 0;            // Idem p seq2
 
-    while (1)
+    for (int i = 0; i < n; i++)
     {
         if (act[i] == 1)
         {
@@ -107,7 +107,7 @@ int priority_queue(int act[], int estrutura[], int n)
     este também terá um modo de mostrar o maior de seq1 */
     int maior = 0;
 
-    while (1)
+    for (int i = 0; i < n; i++)
     {
         if (act[i] == 1)
         {
