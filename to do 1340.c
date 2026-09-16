@@ -11,20 +11,29 @@ Uso de IA   :
 #include <stdio.h>
 #include <stdlib.h>
 
-int queue()
-{
-    if ()
+int queue(int act, int estrutura, int n)
+{ // FIFO, assim, vamos ver se as sequências de 1 e 2 são idênticas:
+    int seq1[n], seq2[n], valor = 0;
+
+    while (1)
+    {
+        if
+            if (seq1[])
+    }
+
+    if (valor != 0)
     { // Se for fila.
         return 1;
     }
+
     else
     { // Se não for fila.
         return 0;
     }
 }
 
-int stack()
-{
+int stack(int act, int estrutura, int n)
+{ // LIFO, assim,
     if ()
     { // Se for pilha
         return 2;
@@ -35,7 +44,7 @@ int stack()
     }
 }
 
-int priority_queue()
+int priority_queue(int act, int estrutura, int n)
 {
     if ()
     { // Se for fila de prioridade.
@@ -52,27 +61,37 @@ int main()
     int n;
     while (scanf("%d", &n) != EOF)
     {
+        // A priori, vamos guardar a estrutura.
+        int estrutura[n];
+        int act[n];
+
+        for (int i = 0; i < n; i++)
+        {
+            scanf("%d", &act[i]);       // A ação, 1 ou 2.
+            scanf("%d", &estrutura[i]); // Qual número.
+        }
+
         int resultado = 0;
-        resultado = resultado + queue();
-        resultado = resultado + stack();
-        resultado = resultado + priority_queue();
+        resultado = resultado + queue(act, estrutura, n);
+        resultado = resultado + stack(act, estrutura, n);
+        resultado = resultado + priority_queue(act, estrutura, n);
 
         switch (resultado)
         {
         case 0:
-            printf("impossible");
+            printf("impossible\n");
 
         case 1:
-            printf("queue");
+            printf("queue\n");
 
         case 2:
-            printf("stack");
+            printf("stack\n");
 
         case 3:
-            printf("priority queue");
+            printf("priority queue\n");
 
         default:
-            printf("not sure");
+            printf("not sure\n");
         }
     }
     return 0;
