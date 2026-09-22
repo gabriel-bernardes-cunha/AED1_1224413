@@ -4,13 +4,12 @@ Nome        : Gabriel Bernardes Cunha
 Linguagem   : C
 Problema    : https://judge.beecrowd.com/pt/problems/view/2448
 Data        : 26/09/2026
-Objetivo    : 
-Dificuldade : 
+Objetivo    : Calcular quantos números passo em um vetor, seguindo uma ordem dada.
+Dificuldade : Inserir a busca binária no problema dado.
 Uso de IA   : 
 -------------------------------------------------------------------------- */
-//  N M, casas e encomendas
-//casas
-//ordem
+// Ele entrega "NO COMEÇO DO NÚMERO", cada casa é uma unidade de tempo.
+// como usar busca binária nisso?
 
 int main ()
 {
