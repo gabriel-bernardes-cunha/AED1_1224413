@@ -98,17 +98,17 @@ int main()
                     pop(&head); // Remove o '(' da pilha
                 }
             }
-            else
+            else // AGORA VEMOS SEM SER PARENTESES
             {
                 int p = precedencia(atual);
 
-                if (p == 0)
+                if (p == 0) // OPERANDO
                 { 
                     // Operando (letra/número) vai direto para o postfix
                     postfix[k] = atual;
                     k++;
                 }
-                else
+                else // OPERADORES
                 {
                     // Operador comum (+, -, *, /, ^)
                     while (head != NULL && head->x != '(' && precedencia(head->x) >= p)
