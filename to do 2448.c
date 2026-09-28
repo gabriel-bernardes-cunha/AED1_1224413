@@ -6,7 +6,7 @@ Problema    : https://judge.beecrowd.com/pt/problems/view/2448
 Data        : 27/09/2026
 Objetivo    : Calcular quantos números passo em um vetor, seguindo uma ordem dada.
 Dificuldade : Inserir a busca binária no problema dado.
-Uso de IA   : 
+Uso de IA   : Entender aonde mesmo usaria busca binária.
 -------------------------------------------------------------------------- */
 #include <stdio.h>
 #include <stdlib.h>
@@ -34,7 +34,7 @@ int main() {
         scanf("%d", &casas[i]);
     }
 
-    int tempo;
+    int tempo = 0;
     
 
     printf("%d\n", tempo);
