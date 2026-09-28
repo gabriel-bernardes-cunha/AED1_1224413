@@ -11,41 +11,32 @@ Uso de IA   :
 #include <stdio.h>
 #include <stdlib.h>
 
-// Busca binária pura para achar o índice da casa
-int busca_binaria(int casas[], int n, int x) {
-    int ini = 0, fim = n - 1;
-    while (ini <= fim) {
-        int meio = ini + (fim - ini) / 2;
-        if (casas[meio] == x) return meio;
-        if (casas[meio] < x) ini = meio + 1;
-        else fim = meio - 1;
+int busca (int x, int n, int v[])
+{
+    int fundo, m, teto;
+    fundo = 0;
+    teto = n;
+    while (fundo < teto - 1)
+    {
+        m = (fundo+teto)/2; // Vejo o meio.
+        if (v[m]<x) fundo = m; // Se meu x está após o meio, procuro no "meio superior".
+        else teto = m; // Se meu x está antes o meio, procuro no "meio inferior".
     }
-    return -1;
+    return teto; // Por que?
 }
 
 int main() {
-    int n, m;
-    if (scanf("%d %d", &n, &m) != 2) return 0;
+    int n, m; // Casas e Encomendas.
+    scanf("%d %d", &n, &m);
 
     int casas[n];
     for (int i = 0; i < n; i++) {
         scanf("%d", &casas[i]);
     }
 
-    long long tempo = 0;
-    int atual = 0; // O carteiro começa na casa de índice 0
+    int tempo;
+    
 
-    for (int i = 0; i < m; i++) {
-        int encomenda;
-        scanf("%d", &encomenda);
-
-        int destino = busca_binaria(casas, n, encomenda);
-        
-        // Soma a distância absoluta entre a posição atual e o destino
-        tempo += abs(destino - atual);
-        atual = destino; // Atualiza a posição do carteiro
-    }
-
-    printf("%lld\n", tempo);
+    printf("%d\n", tempo);
     return 0;
 }
