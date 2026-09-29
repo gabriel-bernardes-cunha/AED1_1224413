@@ -29,6 +29,8 @@ int main()
     {
         int N; // Número de elementos.
         scanf("%d", &N);
+        if (N == 0)
+            break;
 
         int wagon[N]; // Cria o vagão a ser manipulado.
 
