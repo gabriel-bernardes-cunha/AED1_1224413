@@ -9,10 +9,36 @@ Dificuldade :
 Uso de IA   : 
 -------------------------------------------------------------------------- */
 #include <stdio.h>
+#include <stdlib.h>
 
-void avalia(int wagon[])
+typedef struct prato
 {
-    if ()
+    int x;
+    struct prato *seg;
+} prato;
+
+void push(prato **head, int valor)
+{
+    prato *novo = (prato *)malloc(sizeof(prato));
+    novo->x = valor;
+    novo->seg = *head;
+    *head = novo;
+    return;
+}
+
+pop(prato **head, int valor)
+{
+    prato *atual = *head;
+    *head = (*head)->seg;
+    // int x = atual->x;
+    free(atual);
+    // return x;
+    return;
+}
+
+void avalia(int resultado)
+{
+    if (resultado == 0)
     {
         printf("Yes\n");
     }
@@ -33,6 +59,7 @@ int main()
             break;
 
         int wagon[N]; // Cria o vagão a ser manipulado.
+        int out[N];   // Vagão de saída.
 
         for (int i = 0; i < N; i++)
         {
@@ -41,8 +68,18 @@ int main()
             {
                 i = 0; // Reinicio o caso, quando acabar o vagão
                 // Vamos avaliar o vagão preenchido:
+                // *Estamos na estação!* :
 
-                avalia(wagon);
+                prato *head = NULL;
+                int p = 0;
+                int z = 0;
+                
+                for (;;)
+                {
+                    push(&head, wagon[p]);
+                    p++;
+                    if ()
+                }
 
                 // Veja que não vou me dar o trabalho de esvaziar o vagão pois não é necessário.
             }
