@@ -9,41 +9,8 @@ Dificuldade : Realizar a função de reorganizar as cartas.
 Uso de IA   : Sintaxe (Conflitos de typedef e tag na struct e anotação de
 ponteiros (cabeça->seg e *cabeça->seg) ) e um loop infinito no printf final.
 -------------------------------------------------------------------------- */
-#include <stdio.h>
-#include <stdlib.h>
 
-typedef struct carta
-{
-    int numero;
-    struct carta *seg;
-} carta;
-
-void organiza(carta **head, int n) // Estabelece a fila inicial.
-{
-    carta *bye = (carta *)malloc(sizeof(carta));
-
-    bye->numero = n; // O número da carta, sua identidade, não posição.
-    // Apenas nomeando, exemplo: carta 2 se chama "2".
-
-    bye->seg = NULL; // Nada após.
-
-    if (*head == NULL)
-    {
-        *head = bye;
-    }
-    else
-    {
-        carta *atual = *head;
-        while (atual->seg != NULL)
-        {
-            atual = atual->seg;
-        }
-        atual->seg = bye;
-    }
-
-    return;
-}
-void reorganiza(carta **head, int *descarte, int i, int n) // Coloca a carta seguinte na base.
+//void reorganiza(carta **head, int *descarte, int i, int n) // Coloca a carta seguinte na base.
 {
     descarte[i] = (*head)->numero; // Para lembrar a ordem de descarte, qual carta estou descartando.
 
