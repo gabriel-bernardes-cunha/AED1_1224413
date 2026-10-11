@@ -6,7 +6,7 @@ Problema    : https://judge.beecrowd.com/pt/problems/view/1062
 Data        : 11/10/2026
 Objetivo    : Verificar se consigo reorganizar números conforme desejado.
 Dificuldade : Entender a lógica por trás do confuso enunciado do exercício e também realizar o algoritimo de verificação em si.
-Uso de IA   : Perceber que precisava de vários pop na estação.
+Uso de IA   : Consertar lógica de laços e verificação (destaco que muito disso foi pelo exercício com enunciado confuso, cheguei a resolver 3 maneiras distintas pois estava bem mal formulado.
 -------------------------------------------------------------------------- */
 #include <stdio.h>
 #include <stdlib.h>
@@ -22,7 +22,7 @@ void push(no **head, int numero)
     no *novo = (no *)malloc(sizeof(no));
     novo->x = numero;
     novo->seg = *head;
-    *head=novo;
+    *head = novo;
 
     return;
 }
@@ -53,28 +53,27 @@ void imprime(int resultado)
 }
 
 int main()
-{ // A priori, vamos dividir em dois laços: o de *Números* e o de *Casos*. Veja que ambos tem a entrada 0 como parada.
+{ // A priori, vamos dividir em dois laços: o de *Números* e o de *Casos*. Veja que ambos tem a saída 0 como parada.
 
-    while (1) // Laço que controla cada caso de *número* de elementos de vagão, não cada caso de entrada, (N).
+    while (1) // Laço que controla cada caso de *número* de elementos de vagão, não cada caso de saída, (N).
     {
         int N;           // Número de elementos.
         scanf("%d", &N); // Lê o número de elementos
 
         if (N == 0) // Este é o fim do laço de números.
-            break;  // Este seria o segundo zero, ou seja, o fim das entradas.
+            break;  // Este seria o segundo zero, ou seja, o fim das saídas.
 
-        while (1) // Laço que controla cada *caso* de entrada vagão, não cada número, (eg: 1 3 2 5 4 6...).
+        while (1) // Laço que controla cada *caso* de saída vagão, não cada número, (eg: 1 3 2 5 4 6...).
         {
-            int E[N];        // Cria o vagão que vai entrar.
             int S[N];        // Cria o vagão que vai sair.
-            int termino = 1; // Esta variável vai controlar a saída do laço de casos.
+            int E[N];        // Cria o vagão que vai entrar.
+            int termino = 1; // Esta variável vai controlar a entrada do laço de casos.
 
             for (int k = 0; k < N; k++)
             {
-                scanf("%d", &E[N - k - 1]); /*O "N-k-1" é apenas um método para preencher o vagão ao contrário, visto que a entrada nos
-                    dá o vagão de forma inversa (eg: "5 4 3 2 1", mas perceba que ele vai entrar na estação como "1 2 3 4 5" )*/
+                scanf("%d", &S[k]);
 
-                if (E[N - 1] == 0) // Caso a primeira entrada seja zero, indica o fim da entrada do laço de casos.
+                if (S[0] == 0) // Caso a primeira saída seja zero, indica o fim da saída do laço de casos.
                 {
                     termino = 0; // Indica o fim do laço de casos.
                     break;
@@ -83,24 +82,27 @@ int main()
 
             if (termino == 0)
             {
-                break; // Saída do laço de casos, conforme uma entrada "0".
+                printf("\n");
+                break; // Eaída do laço de casos, conforme uma leitura "0".
             }
 
-            // Caso não saia, então o vetor E[] teve já possui todos os elementos. Então vamos, agora, preencher a saída esperada:
+            // Caso não saia do laço, então o vetor S[] teve já possui todos os elementos. Sntão vamos, agora, preencher a entrada:
             for (int k = 0; k < N; k++)
             {
-                S[k] = N - k; // Veja que a saída é uma ordem de N elementos decrescente, por isso "N-k".
+                E[k] = k + 1;
             }
 
             // Com ambos vetores preenchidos, vamos começar a analisar.
             no *head = NULL;
             int i = 0;
-            int o = 0; // Percorrerão os vetores, E[i] e S[o].
+            int o = 0; // Percorrerão os vetores, S[i] e E[o].
 
-            for (int k = 0; k < N; k++)
-            { // Há duas condições de "colocar" o elemento no vagão de saída: Saindo da estação (pilha) ou direto do vagão de entrada.
+            int resultado = 0; // = 0 Yes, = 0 No.
 
-                if (E[i] == S[o]) // Quando sai direto do vagão de entrada.
+            while (i < N /*Caso ainda tenha elementos na entrada*/ || head != NULL /*Caso ainda tenha elementos na estação*/)
+            { // Há duas condições de "colocar" o elemento no vagão de saída: Eaindo da estação (pilha) ou direto do vagão de saída.
+
+                if (i < N && E[i] == S[o]) // Quando sai direto do vagão de saída.
                 {
                     E[i] = 0;
                     i++; /*Esvazia o "espaço" de E*/
@@ -112,48 +114,34 @@ int main()
 
                     if (head != NULL && head->x == S[o]) // Consigo tirar algum vagão lá de dentro? (No caso, o último vagão a entrar)
                     {
-                        
-                        pop(&head); // Retiro da estação.
+                        while (head != NULL && head->x == S[o])
+                        {
+                            pop(&head); // Retiro da estação.
 
-                        S[o] = 0;
-                        o++; /*Ocupa o "espaço" de S*/
+                            S[o] = 0;
+                            o++; /*Ocupa o "espaço" de S*/
+                        }
                     }
-                    else
+                    else if (i < N)
                     {
-
                         // Caso eu não consiga colocar o último elemento da estação, só coloco, na estação, o elemento da entrada.
                         push(&head, E[i]); // Coloco na estação o outro vagão
 
                         E[i] = 0;
                         i++; /*Esvazia o "espaço" de E*/
                     }
+                    else
+                    {
+                        // 4. TRAVOU: Acabaram os trens, o topo da pilha não bate e não há o que fazer.
+                        resultado = 1;
+                        break; // Sai do while para não travar em loop infinito!
+                    }
                 }
             }
-            // Meu vagão de entrada está vazio.
-
-            // Percebe que, mesmo acabando o laço, posso ainda ter elementos na pilha, vamos tentar esvaziar.
-            int resultado = 0; // Vai ditar se deu certo. Caso resultado = 0, deu certo.
 
             while (head != NULL)
             {
-                // Analisemos a estação:
-
-                if (head != NULL && head->x == S[o]) // Consigo tirar algum vagão lá de dentro? (No caso, o último vagão a entrar)
-                {
-                    pop(&head); // Retiro da estação.
-
-                    S[o] = 0;
-                    o++; /*Ocupa o "espaço" de S*/
-                }
-                else
-                {
-                    while (head != NULL)
-                    {
-                        pop(&head);
-                    }
-                    resultado = 1;
-                    break;
-                }
+                pop(&head);
             }
             // Se conseguir esvaziar a estação, deu certo e reusltado = 0;
             imprime(resultado);
