@@ -132,7 +132,7 @@ int main()
                     }
                     else
                     {
-                        // 4. TRAVOU: Acabaram os trens, o topo da pilha não bate e não há o que fazer.
+                        // NADA DEU CERTO: Acabaram os trens, o topo da pilha não bate e não há o que fazer.
                         resultado = 1;
                         break; // Sai do while para não travar em loop infinito!
                     }
