@@ -6,7 +6,7 @@ Problema    : https://judge.beecrowd.com/pt/problems/view/2448
 Data        : 27/09/2026
 Objetivo    : Calcular quantos números passo em um vetor, seguindo uma ordem dada.
 Dificuldade : Inserir a busca binária no problema dado.
-Uso de IA   : Entender aonde mesmo usaria busca binária.
+Uso de IA   : Entender aonde mesmo usaria busca binária e entender lógica do "tempo = tempo + abs(posf - pos0)".
 -------------------------------------------------------------------------- */
 #include <stdio.h>
 #include <stdlib.h>
