@@ -3,7 +3,7 @@ Disciplina  : Algortimo e Estrutura de Dados 2026S1
 Nome        : Gabriel Bernardes Cunha
 Linguagem   : C
 Problema    : https://judge.beecrowd.com/pt/problems/view/1195
-Data        : 31/10/2026
+Data        : 01/11/2026
 Objetivo    : Imprimir os valores de uma árvore em certas ordens
 Dificuldade : Ententer e realizar o pre, in e pos
 Uso de IA   : Ententer e realizar o pre, in e pos. Liberar a árvore após cada caso.
