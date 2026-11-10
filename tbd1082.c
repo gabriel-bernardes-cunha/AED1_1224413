@@ -20,7 +20,15 @@ int main ()
   scanf ("%d",&N);
   for (int i = 0 ; i < N ; i++)
     {
-      
+      int v,a;
+      scanf ("%d%d",&v,&a);
+
+      for (int i2 = 0; i2 < a ;i2++)
+        {
+          o
+        }
+
+      printf ("Case #%d:\n", i+1);
     }
   
   
