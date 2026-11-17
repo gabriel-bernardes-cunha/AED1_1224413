@@ -11,39 +11,48 @@ Uso de IA   : type cast,
 #include <stdio.h>
 #include <stdlib.h>
 
-int main ()
+int main()
 {
 
-  int N;
-  scanf ("%d",&N);
-  for (int i = 0 ; i < N ; i++)
+    int N;                      // Quantidade de casos.
+    scanf("%d", &N);            // Leia quantos casos.
+    for (int i = 0; i < N; i++) // Cada laço para cada caso.
     {
-      int v,a; // Vértices e Arestas.
-      scanf ("%d%d",&v,&a);
+        int v, a;              // Vértices e Arestas.
+        scanf("%d%d", &v, &a); // Leia os vértices e arestas.
 
-      int matriz[v][a]; // Inicializo a matriz.
-      // Vamos preencher a matriz:
-      for (int i2 = 0; i2 < v ; i2++)
+        int matriz[v][v]; // Inicializo a matriz de adjacência.
+
+        // Vamos preencher a matriz, a priori, com zeros.
+        for (int i2 = 0; i2 < v; i2++)
         {
-          for (int i3 = 0; i3 < a; i3 ++)
+            for (int i3 = 0; i3 < a; i3++)
             {
-              matriz[i2][i3] = 0;
+                matriz[i2][i3] = 0;
             }
         }
-      
-      for (int i2 = 0; i2 < a ;i2++)
+
+        // Vamos preencher a matriz, agora, vendo onde há arestas nos determinados vértices.
+        for (int i2 = 0; i2 < a; i2++)
         {
-          char t1, t2;
-          scanf ("%c %c",&t1,&t2); // Leio a atual aresta.
-          
-          int d1 = (int)t1; // Passa para decimal.
-          int d2 = (int)t2; // Idem.
-          matriz[d1-97][d2-97] = 1; // Exemplo, a e b -97 em cada decimal, são as colunas 0 e 1, respectivamente...
+            char t1, t2;
+            scanf("%c %c", &t1, &t2); // Leio a atual aresta.
+
+            int d1 = (int)t1; // Passa para decimal.
+            int d2 = (int)t2; // Idem.
+
+            // Exemplo, a e b -97 em cada decimal, são as colunas 0 e 1, respectivamente...
+            matriz[d1 - 97][d2 - 97] = 1;
         }
 
-      printf ("Case #%d:\n", i+1);
+        // Agora vamos imprimir:
+        printf("Case #%d:\n", i + 1);
+
+        for (int i2 = 0; i2 < a; i2++)
+        {
+            // printf();
+        }
     }
-  
-  
-  return 0;
+
+    return 0;
 }
