@@ -26,7 +26,7 @@ int main()
         // Vamos preencher a matriz, a priori, com zeros.
         for (int i2 = 0; i2 < v; i2++)
         {
-            for (int i3 = 0; i3 < a; i3++)
+            for (int i3 = 0; i3 < v; i3++)
             {
                 matriz[i2][i3] = 0;
             }
@@ -43,15 +43,18 @@ int main()
 
             // Exemplo, a e b -97 em cada decimal, são as colunas 0 e 1, respectivamente...
             matriz[d1 - 97][d2 - 97] = 1;
+            matriz[d2 - 97][d1 - 97] = 1;
         }
 
         // Agora vamos imprimir:
         printf("Case #%d:\n", i + 1);
 
+        int componentes = 0;
         for (int i2 = 0; i2 < a; i2++)
         {
             // printf();
         }
+        printf("%d connected components\n\n", componentes);
     }
 
     return 0;
