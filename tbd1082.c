@@ -11,6 +11,12 @@ Uso de IA   : type cast, ver como imprimiria
 #include <stdio.h>
 #include <stdlib.h>
 
+int bfs (int vi, v, int fila[], )
+{
+    int fila[]
+    return 0;
+}
+
 int main()
 {
 
@@ -21,6 +27,7 @@ int main()
         int v, a;              // Vértices e Arestas.
         scanf("%d%d", &v, &a); // Leia os vértices e arestas.
 
+        int fila[v], vi;
         int matriz[v][v]; // Inicializo a matriz de adjacência.
 
         // Vamos preencher a matriz, a priori, com zeros.
@@ -46,6 +53,8 @@ int main()
             matriz[d2 - 97][d1 - 97] = 1;
         }
 
+        bfs (vi, v, fila);
+        
         // Agora vamos imprimir:
         printf("Case #%d:\n", i + 1);
 
